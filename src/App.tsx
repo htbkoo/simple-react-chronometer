@@ -1,26 +1,72 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 const App: React.FC = () => {
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            <Chronometer />
         </div>
     );
 };
+
+interface ChronometerState {
+    app: {
+        isCounting: boolean,
+        count: number,
+    }
+}
+
+const INTERVAL = 10;
+let tempCount = 0; // TODO: fix this
+
+function Chronometer() {
+    // const [appState, setAppState] = useState<ChronometerState>({app: {isCounting: false, count: 0}});
+    const [count, setCount] = useState(0);
+    const [counterId, setCounterId] = useState<NodeJS.Timeout | undefined>(undefined);
+    tempCount = count;
+
+    return (
+        <div>
+            <div>
+                {formatCount(count)}
+            </div>
+
+            <div>
+                <button onClick={() => {
+                    if (!counterId) {
+                        setCounterId(
+                            setInterval(() => {
+                                setCount(tempCount + 10);
+                            }, INTERVAL)
+                        );
+                    }
+                }}>
+                    Start
+                </button>
+                <button onClick={() => {
+                    if (counterId) {
+                        clearInterval(counterId);
+                    }
+                    setCounterId(undefined);
+                }}>
+                    Stop
+                </button>
+                <button onClick={() => {
+                    setCount(0);
+                }}>
+                    Reset
+                </button>
+            </div>
+        </div>
+    )
+}
+
+function formatCount(count: number): string {
+
+    const seconds = (Math.floor(count / 1000)).toString().padStart(2, "0");
+    const milliseconds = (count % 1000).toString().padStart(3, "0");
+    return `${seconds}:${milliseconds}`;
+}
 
 export default App;
