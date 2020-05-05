@@ -1,2 +1,2 @@
-# typescript-react-app-template
-A template repository for bootstrapping react app in typescript (created with create-react-app with typescript)
+# simple-react-chronometer
+A repository for a simple chronometer (created with create-react-app with typescript)
