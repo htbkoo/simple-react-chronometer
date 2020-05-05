@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "simple-chronometer",
+  "name": "Simple-React-Chronometer",
   "icons": [
     {
       "src": "favicon.ico",
