@@ -17,13 +17,11 @@ interface ChronometerState {
 }
 
 const INTERVAL = 10;
-let tempCount = 0; // TODO: fix this
 
 function Chronometer() {
     // const [appState, setAppState] = useState<ChronometerState>({app: {isCounting: false, count: 0}});
     const [count, setCount] = useState(0);
     const [counterId, setCounterId] = useState<NodeJS.Timeout | undefined>(undefined);
-    tempCount = count;
 
     return (
         <div>
@@ -36,7 +34,7 @@ function Chronometer() {
                     if (!counterId) {
                         setCounterId(
                             setInterval(() => {
-                                setCount(tempCount + 10);
+                                setCount(prevCount => prevCount + 10);
                             }, INTERVAL)
                         );
                     }
