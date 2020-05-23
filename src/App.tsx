@@ -59,7 +59,7 @@ function Chronometer() {
     )
 }
 
-function formatCount(count: number): string {
+export function formatCount(count: number): string {
 
     const seconds = (Math.floor(count / 1000)).toString().padStart(2, "0");
     const milliseconds = (count % 1000).toString().padStart(3, "0");
