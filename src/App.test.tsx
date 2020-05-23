@@ -6,8 +6,8 @@ describe('<App/>', () => {
     describe('render / component tests', () => {
         test('renders initial time count', () => {
             const { getByText } = render(<App />);
-            const linkElement = getByText(/00:00/i);
-            expect(linkElement).toBeInTheDocument();
+            const timerElement = getByText(/00:00/i);
+            expect(timerElement).toBeInTheDocument();
         });
     });
 });
