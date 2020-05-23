@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import './App.css';
 
-const App: React.FC = () => {
+function App() {
     return (
         <div className="App">
             <Chronometer />
         </div>
     );
-};
+}
 
 interface ChronometerState {
     app: {
