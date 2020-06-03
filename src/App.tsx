@@ -32,21 +32,49 @@ function Chronometer() {
             </div>
 
             <div>
-                <button onClick={() => {
-                    if (!counterId) {
-                        setCounterId(
-                            setInterval(() => {
-                                setCount(prevCount => prevCount + 10);
-                            }, INTERVAL)
-                        );
-                    }
-                }}>
-                    Start
+                <button
+                    onClick={() => {
+                        if (!counterId) {
+                            setCounterId(
+                                setInterval(() => {
+                                    setCount(prevCount => prevCount + INTERVAL);
+                                }, INTERVAL)
+                            );
+                        }
+                    }}
+                    disabled={!!counterId}
+                >
+                    Count up
                 </button>
-                <button onClick={() => {
-                    stopCounter();
-                    setCounterId(undefined);
-                }}>
+                <button
+                    onClick={() => {
+                        if (!counterId && count >= INTERVAL) {
+                            setCounterId(
+                                setInterval(() => {
+                                    setCount(prevCount => {
+                                        if (prevCount >= INTERVAL) {
+                                            return prevCount - INTERVAL
+                                        } else {
+                                            stopCounter();
+                                            setCounterId(undefined);
+                                            return 0;
+                                        }
+                                    });
+                                }, INTERVAL)
+                            );
+                        }
+                    }}
+                    disabled={!!counterId}
+                >
+                    Count down
+                </button>
+                <button
+                    onClick={() => {
+                        stopCounter();
+                        setCounterId(undefined);
+                    }}
+                    disabled={!counterId}
+                >
                     Stop
                 </button>
                 <button onClick={() => {
