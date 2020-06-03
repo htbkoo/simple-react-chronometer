@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/simple-react-chronometer/static/css/main.4d805f06.chunk.css",
+    "main.js": "/simple-react-chronometer/static/js/main.b9f77d9b.chunk.js",
+    "main.js.map": "/simple-react-chronometer/static/js/main.b9f77d9b.chunk.js.map",
+    "runtime-main.js": "/simple-react-chronometer/static/js/runtime-main.8458fae2.js",
+    "runtime-main.js.map": "/simple-react-chronometer/static/js/runtime-main.8458fae2.js.map",
+    "static/js/2.8ade56dd.chunk.js": "/simple-react-chronometer/static/js/2.8ade56dd.chunk.js",
+    "static/js/2.8ade56dd.chunk.js.map": "/simple-react-chronometer/static/js/2.8ade56dd.chunk.js.map",
+    "index.html": "/simple-react-chronometer/index.html",
+    "precache-manifest.ace5beb641057bbfc10d013adc5c3e8d.js": "/simple-react-chronometer/precache-manifest.ace5beb641057bbfc10d013adc5c3e8d.js",
+    "service-worker.js": "/simple-react-chronometer/service-worker.js",
+    "static/css/main.4d805f06.chunk.css.map": "/simple-react-chronometer/static/css/main.4d805f06.chunk.css.map",
+    "static/js/2.8ade56dd.chunk.js.LICENSE.txt": "/simple-react-chronometer/static/js/2.8ade56dd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8458fae2.js",
+    "static/js/2.8ade56dd.chunk.js",
+    "static/css/main.4d805f06.chunk.css",
+    "static/js/main.b9f77d9b.chunk.js"
+  ]
+}
