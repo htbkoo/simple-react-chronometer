@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 function App() {
@@ -23,6 +23,8 @@ function Chronometer() {
     const [count, setCount] = useState(0);
     const [counterId, setCounterId] = useState<NodeJS.Timeout | undefined>(undefined);
 
+    useEffect(cleanUpCounterOnUnmount, [counterId]);
+
     return (
         <div>
             <div>
@@ -42,9 +44,7 @@ function Chronometer() {
                     Start
                 </button>
                 <button onClick={() => {
-                    if (counterId) {
-                        clearInterval(counterId);
-                    }
+                    stopCounter();
                     setCounterId(undefined);
                 }}>
                     Stop
@@ -57,6 +57,17 @@ function Chronometer() {
             </div>
         </div>
     )
+
+    function cleanUpCounterOnUnmount() {
+        // clearInterval on unmount to avoid memory leak
+        return stopCounter;
+    }
+
+    function stopCounter() {
+        if (counterId) {
+            clearInterval(counterId);
+        }
+    }
 }
 
 export function formatCount(count: number): string {
