@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render,} from '@testing-library/react';
+import {act, fireEvent, render} from '@testing-library/react';
 import App, {formatCount} from './App';
 
 describe('<App/>', () => {
@@ -23,20 +23,27 @@ describe('<App/>', () => {
             expect(timerElement).toBeInTheDocument();
         });
 
-        // TODO: fix `Warning: An update to Chronometer inside a test was not wrapped in act(...).`
-        it('should add count to timer after clicked start', () => {
-            // given
-            jest.useFakeTimers();
-            const {getByText} = render(<App />);
-            fireEvent.click(getByText(/Start/i))
+        [
+            {timeLapsed: 0, expectedText: /00:000/i},
+            {timeLapsed: 9, expectedText: /00:000/i},
+            {timeLapsed: 10, expectedText: /00:010/i},
+            {timeLapsed: 100, expectedText: /00:100/i},
+            {timeLapsed: 999, expectedText: /00:990/i},
+            {timeLapsed: 1000, expectedText: /01:000/i},
+        ].forEach(({timeLapsed, expectedText}) =>
+            it(`should, if start button is clicked, display ${expectedText} after ${timeLapsed}ms`, async () => {
+                // given
+                jest.useFakeTimers();
+                const {getByText} = render(<App />);
+                fireEvent.click(getByText(/Start/i));
 
-            // when
-            jest.advanceTimersByTime(1000);
+                // when
+                await act(async () => await jest.advanceTimersByTime(timeLapsed));
 
-            // then
-            expect(getByText(/01:000/i)).toBeInTheDocument();
-        });
-
+                // then
+                expect(getByText(expectedText)).toBeInTheDocument();
+            })
+        );
     });
 
     describe('formatCount', () => {
