@@ -28,12 +28,6 @@
     "gh-pages:rename": "npx move-cli build docs",
     "gh-pages:rebuild": "npm run gh-pages:clean && npm run build && npm run gh-pages:rename"
   },
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "react-app": "warning"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
