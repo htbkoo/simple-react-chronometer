@@ -19,14 +19,20 @@
     "rxjs": "^6.5.5"
   },
   "scripts": {
-    "start": "cross-env BROWSER=none react-scripts start",
-    "build": "react-scripts build",
-    "test": "cross-env CI=true react-scripts test",
+    "start": "cross-env EXTEND_ESLINT=true BROWSER=none react-scripts start",
+    "build": "cross-env EXTEND_ESLINT=true react-scripts build",
+    "test": "cross-env CI=true EXTEND_ESLINT=true react-scripts test",
     "test:watch": "react-scripts test",
     "eject": "react-scripts eject",
     "gh-pages:clean": "npx rimraf docs",
     "gh-pages:rename": "npx move-cli build docs",
     "gh-pages:rebuild": "npm run gh-pages:clean && npm run build && npm run gh-pages:rename"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "react-app": [1]
+    }
   },
   "browserslist": {
     "production": [
